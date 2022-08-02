@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "app.py",
             "console": "integratedTerminal",
-            "cwd": "/Users/ashish/Repositories/uplight-assessment/"
+            "cwd": "${workspaceFolder}"
         }
     ]
 }

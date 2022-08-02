@@ -3,8 +3,8 @@ import flask
 import io
 import json
 import yaml
-from src.exceptions import ApiException, BadRequestException
-from src.services.signature_generator import SignatureGenerator
+from exceptions import ApiException, BadRequestException
+from services.signature_generator import SignatureGenerator
 import os
 
 
@@ -16,14 +16,12 @@ with open('configurations.yaml', 'r') as stream:
 
 signatureGenerator = SignatureGenerator(config)
 
-vals = os.path.split(os.path.abspath('app.py'))
-
-
 @app.route('/v1/generate-token', methods=['POST'])
 def generateSignature():
     if request.headers.get('Content-Type') != 'application/json':
         raise BadRequestException()
     
+    #TODO: Check if payload is empty
     content = request.get_json()
 
     # Generate the signature of the request body
