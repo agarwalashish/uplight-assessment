@@ -54,12 +54,13 @@ curl -X POST \
 ├── README.md
 ├── app.py
 ├── configurations.yaml
+├── exceptions.py
 ├── requirements.txt
-└── src
-    ├── exceptions.py
-    └── services
-        └── signature_generator.py
-```
+├── services
+│   └── signature_generator.py
+└── tests
+    ├── generate_token_api_test.py
+    └── signature_generator_test.py```
 
 **app.py**: is the entry point of the application.
 
@@ -67,13 +68,15 @@ curl -X POST \
 
 **requirements.txt**: All the dependencies used by the project.
 
-**src**: The directory where the source code is contained. 
 
-## Building locally
+## Running locally
 
 * Run `pip install -r requirements.txt` to install all the python dependencies
 * Run `python app.py` to start the server locally
 
-## Running tests 
+## Running tests
 
-`python -m unittest discover -s tests -p '*test.py'` will run all the tests
+* Ensure that the server is runnining using the steps above
+* Run `python -m unittest discover -s tests -p '*test.py'` to execute all the unit tests in the `tests/` directory
+
+generate the requests file python -m  pipreqs.pipreqs . 

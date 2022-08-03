@@ -1,12 +1,9 @@
 from flask import Response, request, jsonify
 import flask
-import io
 import json
 import yaml
 from exceptions import ApiException, BadRequestException
 from services.signature_generator import SignatureGenerator
-import os
-
 
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
@@ -20,8 +17,11 @@ signatureGenerator = SignatureGenerator(config)
 def generateSignature():
     if request.headers.get('Content-Type') != 'application/json':
         raise BadRequestException()
-    
-    #TODO: Check if payload is empty
+
+    # Check if the post request has a body
+    if not request.data:
+        raise BadRequestException()
+
     content = request.get_json()
 
     # Generate the signature of the request body
