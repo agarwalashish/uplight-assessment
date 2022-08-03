@@ -60,14 +60,14 @@ curl -X POST \
 │   └── signature_generator.py
 └── tests
     ├── generate_token_api_test.py
-    └── signature_generator_test.py```
+    └── signature_generator_test.py
+  ```
 
 **app.py**: is the entry point of the application.
 
 **configurations.yaml**: Contains all the configurations for the application. Currently, only one environment is supported.
 
 **requirements.txt**: All the dependencies used by the project.
-
 
 ## Running locally
 
