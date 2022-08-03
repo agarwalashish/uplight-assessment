@@ -1,6 +1,6 @@
 # HMAC Token Generation
 
-A POST endpoint that generates a HMAC token for the request payload
+A POST endpoint that generates a HMAC token for the request payload.
 
 
 ## Description
@@ -11,7 +11,7 @@ The API endpoint is:
 /v1/generate-token
 ```
 
-The endpoint will accept a POST request with a JSON payload, generate a HMAC token and add it as a signature property to request's payload.
+Authentication for all endpoints is enforced using a `client` and `secret` values in the middleware layer. The `generate-token` endpoint will generate a HMAC token based on the body of the POST request and add it as a signature property to request's payload.
 
 ### Example 1:
 
@@ -59,13 +59,15 @@ curl -X POST \
 ├── app.py
 ├── configurations.yaml
 ├── exceptions.py
+├── middleware
+│   └── auth_middleware.py
 ├── requirements.txt
 ├── services
 │   └── signature_generator.py
 └── tests
     ├── generate_token_api_test.py
-    └── signature_generator_test.py
-  ```
+    └── signature_generator_test.py  
+```
 
 **app.py**: is the entry point of the application.
 
@@ -82,5 +84,3 @@ curl -X POST \
 
 * Ensure that the server is runnining using the steps above
 * Run `python -m unittest discover -s tests -p '*test.py'` to execute all the unit tests in the `tests/` directory
-
-generate the requests file python -m  pipreqs.pipreqs . 
