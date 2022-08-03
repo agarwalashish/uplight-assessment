@@ -15,11 +15,21 @@ class GenerateTokenApiTest(TestCase):
     }
 
     validHeader = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "client": "2ujhg51rasqsacvf0dwk",
+        "secret": "usr2w4gqv6gwi4u8gc510zmr7h45q8yedcv8lv39"
     }
 
-    invalidHeader = {
-        "Content-Type": "application/octet-stream"
+    invalidContentTypeHeader = {
+        "Content-Type": "application/octet-stream",
+        "client": "2ujhg51rasqsacvf0dwk",
+        "secret": "usr2w4gqv6gwi4u8gc510zmr7h45q8yedcv8lv39"
+    }
+
+    invalidAuthHeader = {
+        "Content-Type": "application/json",
+        "client": "invalid_key",
+        "secret": "invalid_secret"
     }
 
     def testCreateTokenOne(self):
@@ -41,8 +51,12 @@ class GenerateTokenApiTest(TestCase):
         self.assertEqual(response.status_code, 400)
 
     def testInvalidHeader(self):
-        response = requests.post(self.url, data=json.dumps(self.tokenRequestOne), headers=self.invalidHeader)
+        response = requests.post(self.url, data=json.dumps(self.tokenRequestOne), headers=self.invalidContentTypeHeader)
         self.assertEqual(response.status_code, 400)
+
+    def testInvalidAuth(self):
+        response = requests.post(self.url, data=json.dumps(self.tokenRequestOne), headers=self.invalidAuthHeader)
+        self.assertEqual(response.status_code, 401)
 
 if __name__ == '__main__':
     unittest.main()

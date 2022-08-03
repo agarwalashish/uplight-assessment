@@ -1,12 +1,15 @@
 from flask import Response, request, jsonify
+from flask_restful import Api, abort
 import flask
 import json
 import yaml
 from exceptions import ApiException, BadRequestException
 from services.signature_generator import SignatureGenerator
+from middleware.auth_middleware import AuthMiddleware
 
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
+app.wsgi_app = AuthMiddleware(app.wsgi_app)
 
 with open('configurations.yaml', 'r') as stream:
     config = yaml.safe_load(stream)

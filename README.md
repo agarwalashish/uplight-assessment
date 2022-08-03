@@ -19,6 +19,8 @@ The endpoint will accept a POST request with a JSON payload, generate a HMAC tok
 ```
 curl -X POST \
 -H "Content-Type: application/json" \
+-H "client: 2ujhg51rasqsacvf0dwk" \
+-H "secret: usr2w4gqv6gwi4u8gc510zmr7h45q8yedcv8lv39" \
 'localhost:5000/v1/generate-token' \
 --data '{"id": "MDAwMDAwMDAtMDAwMC0wMDBiLTAxMmMtMDllZGU5NDE2MDAz"}'
 ```
@@ -36,6 +38,8 @@ curl -X POST \
 ```
 curl -X POST \
 -H "Content-Type: application/json" \
+-H "client: 2ujhg51rasqsacvf0dwk" \
+-H "secret: usr2w4gqv6gwi4u8gc510zmr7h45q8yedcv8lv39" \
 'localhost:5000/v1/generate-token' \
 --data '{"message":"Apiary: a place where bees and beehives are kept, especially a place where bees are raised for their honey."}'
 ```
@@ -72,7 +76,7 @@ curl -X POST \
 ## Running locally
 
 * Run `pip install -r requirements.txt` to install all the python dependencies
-* Run `python app.py` to start the server locally
+* Run `python app.py`from the project's root directory to start the server locally
 
 ## Running tests
 
